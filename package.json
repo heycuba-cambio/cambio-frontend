@@ -13,9 +13,12 @@
   "author": "Alastair Paragas <alastairparagas@gmail.com>",
   "license": "Apache-2.0",
   "devDependencies": {
+    "chalk": "^1.1.1",
     "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.0",
     "gulp-sass": "^2.2.0",
-    "gulp-watch": "^4.3.5"
+    "gulp-watch": "^4.3.5",
+    "jshint": "^2.9.1"
   },
   "dependencies": {
     "imap": "^0.8.16",
