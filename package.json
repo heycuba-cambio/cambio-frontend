@@ -21,8 +21,11 @@
     "jshint": "^2.9.1"
   },
   "dependencies": {
+    "angular": "^1.5.0",
+    "angular-ui-router": "^0.2.18",
     "imap": "^0.8.16",
     "kbpgp": "^2.0.52",
+    "lodash": "^4.6.1",
     "smtp-connection": "^2.3.1"
   }
 }
