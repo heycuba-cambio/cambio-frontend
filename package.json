@@ -1,0 +1,25 @@
+{
+  "name": "cambio-frontend",
+  "version": "1.0.0",
+  "description": "Cambio is a web browser that uses IMAP and SMTP under-the-hood to allow the Cuban people to view webpages.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:heycuba-cambio/cambio-frontend.git"
+  },
+  "author": "Alastair Paragas <alastairparagas@gmail.com>",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.2.0",
+    "gulp-watch": "^4.3.5"
+  },
+  "dependencies": {
+    "imap": "^0.8.16",
+    "kbpgp": "^2.0.52",
+    "smtp-connection": "^2.3.1"
+  }
+}
