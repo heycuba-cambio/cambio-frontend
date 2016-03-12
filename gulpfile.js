@@ -37,4 +37,5 @@ gulp.task('jshint-watch', function () {
     gulpWatch(['./ui/**/*.js', 'main.js', 'gulpfile.js']);
 });
 
-gulp.task('build', ['sass']);
+
+gulp.task('build', ['sass', 'jshint']);
