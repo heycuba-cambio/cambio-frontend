@@ -37,13 +37,13 @@ User.prototype.reset = function () {
     this.emailService = {
         imapServerAddress: null,
         imapServerPort: null,
-        imapUsername: null,
-        imapPassword: null,
+        imapAuthRequired: null,
+        imapRequireSSL: null,
         
         smtpServerAddress: null,
         smtpServerPort: null,
-        smtpUsername: null,
-        smtpPassword: null
+        smtpAuthRequired: null,
+        smtpRequireSSL: null
     };
 };
 
@@ -69,6 +69,10 @@ User.prototype.initializeByString = function (someString) {
     
     var parsedUserObject = null; 
     parsedUserObject = JSON.parse(someString);
+    
+    if (!parsedUserObject || typeof parsedUserObject !== "object") {
+        throw new Error("Not a valid cached user.");
+    }
     
     lodash.assign(this, parsedUserObject, function (destVal, srcVal, 
                                                      keyName, destObj) {
