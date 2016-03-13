@@ -6,7 +6,7 @@ module.exports = exports = {
             imapServerPort: "993",
             imapRequireSSL: true,
             smtpServerAddress: "smtp.gmail.com",
-            smtpServerPort: "587",
+            smtpServerPort: "465",
             smtpAuthRequired: true,
             smtpRequireSSL: true
         },
@@ -15,7 +15,7 @@ module.exports = exports = {
             imapServerPort: "993",
             imapRequireSSL: true,
             smtpServerAddress: "smtp.mail.yahoo.com",
-            smtpServerPort: "587",
+            smtpServerPort: "465",
             smtpAuthRequired: true,
             smtpRequireSSL: true
         }
