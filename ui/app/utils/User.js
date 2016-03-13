@@ -25,19 +25,19 @@ function validateImapSmtpSettings(imapSmtpSettingsObj) {
     
     if (!imapSmtpSettingsObj.hasOwnProperty("imapAuthRequired") || 
         typeof imapSmtpSettingsObj.imapAuthRequired !== "boolean") {
-        validationDial = false;
+        imapSmtpSettingsObj.imapAuthRequired = true;
     }
     if (!imapSmtpSettingsObj.hasOwnProperty("smtpAuthRequired") || 
         typeof imapSmtpSettingsObj.imapAuthRequired !== "boolean") {
-        validationDial = false;
+        imapSmtpSettingsObj.smtpAuthRequired = true;
     }
     if (!imapSmtpSettingsObj.hasOwnProperty("imapRequireSSL") || 
         typeof imapSmtpSettingsObj.imapAuthRequired !== "boolean") {
-        validationDial = false;
+        imapSmtpSettingsObj.imapRequireSSL = true;
     }
     if (!imapSmtpSettingsObj.hasOwnProperty("smtpRequireSSL") || 
         typeof imapSmtpSettingsObj.imapAuthRequired !== "boolean") {
-        validationDial = false;
+        imapSmtpSettingsObj.smtpRequireSSL = true;
     }
     
     if (!validationDial) {
@@ -158,6 +158,11 @@ User.prototype.initializeByString = function (someString) {
         this.emailService = 
             (determineProviderSettings.bind(this))(this.emailAddress);
     }
+};
+
+
+User.prototype.toObject = function () {
+    return lodash.clone(this);
 };
 
 

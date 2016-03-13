@@ -23,7 +23,8 @@
         </script>
     </head>
     <body ng-app="CambioApp">
-        <div class="window">
+        <div class="window" 
+             ng-controller="AppController as AppController">
             <div class="window-content">
                 <div class="pane-group">
                     
@@ -45,6 +46,15 @@
                                     <span class="icon icon-search">
                                     </span>
                                     Search/Go
+                                </button>
+                                <button class="btn 
+                                               btn-default
+                                               btn-large
+                                               pull-right"
+                                        ng-click="AppController.showSettingsModal()">
+                                    <span class="icon icon-cog">
+                                    </span>
+                                    Settings
                                 </button>
                             </li>
                             <li class="list-group-item">

@@ -1,5 +1,5 @@
 module.exports = exports = {
-    toEmail: "test@jwgames.com",
+    toEmail: "test@jwgames.me",
     serviceProvider: {
         gmail: {
             imapServerAddress: "imap.gmail.com",

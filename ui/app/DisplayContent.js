@@ -46,16 +46,14 @@ function DisplayContentController(DisplayContentService,
             if (data) {
                 jquery('#displayContent #contentBox')
                     .html(DisplayContentService.htmlTree($scope));
-            } else {
-                
             }
         });
     
     _this.goTo = function (link) {
-        console.log(link);
+        SearchBarService.search(link);
     };
     
-    
+    // Initialize the display to the welcome message
     DisplayContentService.updateDisplay(welcomeMessage);
 }
 

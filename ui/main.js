@@ -5,9 +5,11 @@
         
         appBootstrap = require('./app/appBootstrap'), 
         
+        App = require('./app/App'),
         SearchBar = require('./app/SearchBar'), 
         DisplayContent = require('./app/DisplayContent'), 
-        SettingsModal = require('./app/SettingsModal');
+        SettingsModal = require('./app/SettingsModal'),
+        User = require('./app/User');
 
     angular
         .module('CambioApp', ['vModal', 'ngSanitize'])
@@ -19,9 +21,12 @@
                     DisplayContent.Controller)
         .controller('SettingsModalController', 
                     SettingsModal.Controller)
-    
+        .controller('AppController', 
+                    App.Controller)
+        
         .factory('SearchBarService', SearchBar.Service)
         .factory('DisplayContentService', DisplayContent.Service)
-        .factory('SettingsModalService', SettingsModal.Service);
+        .factory('SettingsModalService', SettingsModal.Service)
+        .factory('UserService', User.Service);
     
 }(window));

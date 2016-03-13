@@ -20,19 +20,28 @@ form .group {
     margin-bottom: 10px;
 }
 
-button[class*="btn-"] .icon {
-    color: white;
+button.btn-primary, button.btn-positive, 
+button.btn-negative, button.btn-warning {
+    .icon {
+        color: white;
+    }
+}
+button.btn .icon {
     margin-right: 10px;
 }
 
-.form-actions .btn {
+.form-actions .btn, .list-group-header .btn {
     margin-left: 20px;
 }
 
 .btn[disabled] {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: .40;
-  filter: alpha(opacity=40);
-  box-shadow: none;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: .40;
+    filter: alpha(opacity=40);
+    box-shadow: none;
+}
+
+#displayContent #contentBox {
+    
 }

@@ -10,30 +10,35 @@ function SettingsModalService(vModal) {
     return settingsModal;
 }
 
-function SettingsModalController(SettingsModalService) {
-    var _this = this,
-        user = new User();
+function SettingsModalController(SettingsModalService, UserService) {
+    var _this = this;
     
     _this.formInvalid = false;
     _this.formInvalidMessage = "";
     _this.customFormShown = false;
-    _this.user = {
-        emailAddress: "",
-        password: "",
-        emailService: ""
-    };
+    
+    _this.user = UserService.toObject();
+    
+    if (_this.user.emailAddress === null || 
+        _this.user.password === null) {
+        _this.user = {
+            emailAddress: "",
+            password: "",
+            emailService: ""
+        };
+    }
     
     _this.save = function () {
         _this.formInvalid = false;
         _this.formInvalidMessage = "";
         try {
             if (_this.customFormShown === false) {
-                user.initializeByCredentials(
+                UserService.initializeByCredentials(
                     _this.user.emailAddress, 
                     _this.user.password
                 );
             } else {
-                user.initializeByObject(_this.user);
+                UserService.initializeByObject(_this.user);
             }
         } catch (e) {
             _this.formInvalid = true;
@@ -41,7 +46,7 @@ function SettingsModalController(SettingsModalService) {
         }
         
         if (_this.formInvalid !== true) {
-            localStorage.setItem('user', user.toString());
+            localStorage.setItem('user', UserService.toString());
             SettingsModalService.deactivate();
         }
     };

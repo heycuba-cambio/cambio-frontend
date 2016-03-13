@@ -24,7 +24,6 @@
     "angular": "^1.5.0",
     "angular-sanitize": "^1.5.0",
     "imap": "^0.8.16",
-    "inbox": "^1.1.59",
     "jquery": "^2.2.1",
     "kbpgp": "^2.0.52",
     "lodash": "^4.6.1",

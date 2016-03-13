@@ -11,13 +11,12 @@ var User = require('./utils/User'),
     
     path = require('path');
 
-function appBootstrap(vModal, SettingsModalService) {
-    var cachedUserString = localStorage.getItem('user'), 
-        user = new User();
+function appBootstrap(vModal, SettingsModalService, UserService) {
+    var cachedUserString = localStorage.getItem('user');
     
     // Try initializing the user based on the stored token
     try {
-        user.initializeByString(cachedUserString);
+        UserService.initializeByString(cachedUserString);
     } catch (e) {
         SettingsModalService.activate();
     }
