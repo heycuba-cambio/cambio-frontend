@@ -41,8 +41,6 @@ function SearchBarService($rootScope, UserService) {
                 host: UserService.emailService.imapServerAddress,
                 email: UserService.emailAddress,
                 password: UserService.password
-            }).then(function () {
-                
             });
         });
     }
@@ -72,7 +70,11 @@ function SearchBarController($scope,
         SearchBarService.search(searchTerm).then(function (emailObj) {
             var successMessage = '### Search Inquiry: ' + searchTerm + '\n' + 
                 '----- \n\n';
-            successMessage += emailObj.emailContent;
+            
+            if (emailObj) {
+                successMessage += emailObj.emailContent;
+            }
+            
             DisplayContentService.updateDisplay(successMessage);
         }, function (error) {
             var successMessage = '### Search Inquiry: ' + searchTerm +  
