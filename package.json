@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "angular": "^1.5.0",
+    "angular-sanitize": "^1.5.0",
     "angular-ui-router": "^0.2.18",
     "imap": "^0.8.16",
     "kbpgp": "^2.0.52",
