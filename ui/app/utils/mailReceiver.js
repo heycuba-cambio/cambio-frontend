@@ -92,10 +92,6 @@ function mailReceiver(options) {
                 
             });
         });
-    }).then(function (obj) {
-        console.dir(obj);
-    }, function (err) {
-        console.log(err.message);
     });
 
 }

@@ -41,6 +41,22 @@ function SearchBarService($rootScope, UserService) {
                 host: UserService.emailService.imapServerAddress,
                 email: UserService.emailAddress,
                 password: UserService.password
+            }).then(function (emailObj) {
+                var searches = localStorage.getItem('searches');
+                
+                $rootScope.$broadcast('search:responded', emailObj);
+                
+                if (searches) {
+                    searches = JSON.parse(searches);
+                } else {
+                    searches = [];
+                }
+                searches.push(emailObj);
+                localStorage.setItem('searches', 
+                                     JSON.stringify(searches));
+                localStorage.setItem('search',
+                                     JSON.stringify(emailObj));
+                return emailObj;
             });
         });
     }
@@ -75,7 +91,10 @@ function SearchBarController($scope,
                 successMessage += emailObj.emailContent;
             }
             
+            console.log(emailObj);
+            
             DisplayContentService.updateDisplay(successMessage);
+            console.log(successMessage);
         }, function (error) {
             var successMessage = '### Search Inquiry: ' + searchTerm +  
                 ' (Failed) \n ----- \n\n';

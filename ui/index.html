@@ -57,16 +57,14 @@
                                     Settings
                                 </button>
                             </li>
-                            <li class="list-group-item">
+                            <li class="list-group-item" 
+                                ng-repeat="search in AppController.searches">
                                 <div class="media-body">
-                                    <strong>Some Website Name</strong>
-                                    <p>A bunch of descriptions and metadata about the website</p>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="media-body">
-                                    <strong>Some Website Name</strong>
-                                    <p>A bunch of descriptions and metadata about the website</p>
+                                    <strong>
+                                    {{ search.emailAttribute.date.toString() 
+                                        }}
+                                    </strong>
+                                    <p>{{ search.emailContent }}</p>
                                 </div>
                             </li>
                         </ul>
