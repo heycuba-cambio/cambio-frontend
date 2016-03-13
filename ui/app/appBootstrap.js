@@ -7,25 +7,27 @@
 
 
 var User = require('./utils/User'), 
-    MainProcess = require('electron').remote;
+    MainProcess = require('electron').remote, 
+    
+    path = require('path');
 
-function appBootstrap() {
+function appBootstrap(vModal, SettingsModalService) {
     var cachedUserString = localStorage.getItem('user'), 
         user = new User();
-
+    
     // Try initializing the user based on the stored token
     try {
         user.initializeByString(cachedUserString);
     } catch (e) {
-        MainProcess.dialog.showMessageBox({
-            type: "info",
-            title: "Setup of Email Credentials required",
-            message: "It looks like there is currently no stored " + 
-            "user in the browser. You will be asked to fill up your " + 
-            "email credentials.",
-            buttons: ["OK"]
-        });
+        SettingsModalService.activate();
     }
+    
+    // Add an offline notifier
+    window.addEventListener('offline',  function () {
+        new Notification('No Internet', {
+            body: 'You were disconnected from the internet'
+        });
+    });
 }
 
 module.exports = exports = appBootstrap;

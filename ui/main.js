@@ -5,15 +5,22 @@
         
         appBootstrap = require('./app/appBootstrap'), 
         
-        AppController = require('./app/AppController'),
-        SearchBarController = require('./app/SearchBarController'), 
-        DisplayController = require('./app/DisplayController');
+        AppComponent = require('./app/App'),
+        SearchBarComponent= require('./app/SearchBar'), 
+        DisplayContentComponent= require('./app/DisplayContent'), 
+        SettingsModalComponent = require('./app/SettingsModal');
 
     angular
-        .module('CambioApp', ['ui.router'])
+        .module('CambioApp', ['ui.router', 'vModal'])
+    
         .run(appBootstrap)
-        .controller('AppController', AppController)
-        .controller('SearchBarController', SearchBarController)
-        .controller('DisplayController', DisplayController);
+        .controller('AppController', AppComponent)
+        .controller('SearchBarController', SearchBarComponent)
+        .controller('DisplayController', DisplayContentComponent)
+        
+        .controller('SettingsModalController', 
+                    SettingsModalComponent.SettingsModalController)
+        .service('SettingsModalService', 
+                 SettingsModalComponent.SettingsModalService);
     
 }(window));

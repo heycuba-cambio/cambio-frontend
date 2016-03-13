@@ -1,1 +1,38 @@
-@import "photon/photon"
+@import "photon/photon";
+
+#searchBox {
+    button {
+        position: relative;
+        top: 5px;
+    }
+    margin-bottom: 20px;
+}
+#sideBar {
+    width: 25%;
+    min-width: 250px;
+}
+
+form .form-actions {
+    margin-top: 20px;
+}
+form .group {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+button[class*="btn-"] .icon {
+    color: white;
+    margin-right: 10px;
+}
+
+.form-actions .btn {
+    margin-left: 20px;
+}
+
+.btn[disabled] {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: .40;
+  filter: alpha(opacity=40);
+  box-shadow: none;
+}

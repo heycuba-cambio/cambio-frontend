@@ -1,0 +1,70 @@
+<v-modal class="vModal--default">
+    <v-dialog heading="Email Credentials" medium middle>
+        <h3>Email Credentials</h3>
+        <p>Welcome to <b>Cambio</b>, the awesome way for you to access the internet through email! Because Cambio works through email, we'll need your email credentials. Let's get started!</p>
+        
+        <form name="form" 
+              ng-hide="SettingsModalController.customFormShown">
+            <div class="group">
+                <label>Email Address</label>
+                <input type="email" 
+                       class="form-control" 
+                       name="emailAddress" 
+                       ng-model="SettingsModalController.user.emailAddress" 
+                       required>
+            </div>
+            <div class="group">
+                <label>Password</label>
+                <input type="password" 
+                       class="form-control" 
+                       name="password" 
+                       ng-model="SettingsModalController.user.password" 
+                       required>
+            </div>
+            <div class="form-actions">
+                <button type="submit"
+                        class="btn btn-form btn-positive btn-lg pull-right"
+                        ng-disabled="form.$invalid"
+                        ng-click="SettingsModalController.save()"><b>OK</b></button>
+                <button type="submit"
+                        class="btn btn-form btn-primary btn-lg pull-right"
+                        ng-click="SettingsModalController.showCustomForm()">
+                    <span class="icon icon-cog"></span> Custom</button>
+            </div>
+        </form>
+        
+        <form name="form" 
+              ng-show="SettingsModalController.customFormShown">
+            <div class="group">
+                <label>IMAP Server Address</label>
+            </div>
+            <div class="group">
+                <label>IMAP Server Port</label>
+            </div>
+            <div class="group">
+                <label>IMAP Auth Required</label>
+            </div>
+            <div class="group">
+                <label>IMAP Require SSL</label>
+            </div>
+            <div class="group">
+                <label>SMTP Server Address</label>
+            </div>
+            <div class="group">
+                <label>SMTP Server Port</label>
+            </div>
+            <div class="group">
+                <label>SMTP Auth Required</label>
+            </div>
+            <div class="group">
+                <label>SMTP Require SSL</label>
+            </div>
+        </form>
+        
+        <div 
+             ng-show="SettingsModalController.formInvalid" style="color:red;">
+            {{ SettingsModalController.formInvalidMessage }}
+        </div>
+        
+    </v-dialog>
+</v-modal>

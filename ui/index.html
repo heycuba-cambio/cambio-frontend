@@ -2,16 +2,67 @@
 <html>
     <head>
         <title>Cambio Web Browser</title>
+        <link type="text/css" 
+              rel="stylesheet"
+              href="dist/main.css"/>
+        <link type="text/css"
+              rel="stylesheet"
+              href="../node_modules/v-modal/dist/v-modal.css">
         <script type="text/javascript" 
                 src="../node_modules/angular/angular.min.js">
         </script>
         <script type="text/javascript"
                 src="../node_modules/angular-ui-router/release/angular-ui-router.min.js">
         </script>
+        <script type="text/javascript"
+                src="../node_modules/v-modal/dist/v-modal.js">
+        
+        </script>
         <script type="text/javascript" 
                 src="main.js">
         </script>
     </head>
     <body ng-app="CambioApp">
+        <div class="window">
+            <div class="window-content">
+                <div class="pane-group">
+                    
+                    <div class="sidebar" id="sideBar">
+                        <ul class="list-group">
+                            <li class="list-group-header" id="searchBox">
+                                <input type="text" 
+                                       class="form-control
+                                              pull-left" 
+                                       placeholder="Search Term or Domain name">
+                                <button class="btn 
+                                               btn-primary
+                                               btn-large
+                                               pull-right">
+                                    <span class="icon icon-search">
+                                    </span>
+                                    Search/Go</button>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="media-body">
+                                    <strong>Some Website Name</strong>
+                                    <p>A bunch of descriptions and metadata about the website</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="media-body">
+                                    <strong>Some Website Name</strong>
+                                    <p>A bunch of descriptions and metadata about the website</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pane">
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
     </body>
 </html>

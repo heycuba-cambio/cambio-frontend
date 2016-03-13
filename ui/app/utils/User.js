@@ -1,18 +1,69 @@
 var lodash = require('lodash'), 
     config = require('../../../config');
 
+
 function determineProviderSettings(emailDomain) {
     if (emailDomain === "gmail.com") {
-        this.emailService = config.serviceProvider.gmail;
+        return config.serviceProvider.gmail;
     }
     else if (emailDomain === "yahoo.com") {
-        this.emailService = config.serviceProvider.yahoo;
+        return config.serviceProvider.yahoo;
     }
     else {
         throw new Error("This is not a valid/supported email service " + 
                         "provider.");
     }
 }
+
+function validateImapSmtpSettings(imapSmtpSettingsObj) {
+    var validationDial = true;
+    
+    validationDial = imapSmtpSettingsObj.hasOwnProperty("imapServerAddress");
+    validationDial = imapSmtpSettingsObj.hasOwnProperty("imapServerPort");
+    validationDial = imapSmtpSettingsObj.hasOwnProperty("smtpServerAddress");
+    validationDial = imapSmtpSettingsObj.hasOwnProperty("smtpServerPort");
+    
+    if (imapSmtpSettingsObj.hasOwnProperty("imapAuthRequired") || 
+        typeof imapSmtpSettingsObj.imapAuthRequired !== "boolean") {
+        validationDial = false;
+    }
+    if (imapSmtpSettingsObj.hasOwnProperty("smtpAuthRequired") || 
+        typeof imapSmtpSettingsObj.imapAuthRequired !== "boolean") {
+        validationDial = false;
+    }
+    if (imapSmtpSettingsObj.hasOwnProperty("imapRequireSSL") || 
+        typeof imapSmtpSettingsObj.imapAuthRequired !== "boolean") {
+        validationDial = false;
+    }
+    if (imapSmtpSettingsObj.hasOwnProperty("smtpRequireSSL") || 
+        typeof imapSmtpSettingsObj.imapAuthRequired !== "boolean") {
+        validationDial = false;
+    }
+    
+    if (!validationDial) {
+        throw new Error("Invalid IMAP/SMTP settings. Try again.");
+    }
+}
+
+function validateEmailCredentials(emailAddress, password) {
+    var atSymbolIndex = emailAddress.indexOf('@');
+    
+    if (!emailAddress || atSymbolIndex === -1) {
+        throw new Error("This is not a valid email address");
+    }
+    if (password === null || password === undefined) {
+        throw new Error("This is not a valid email password");
+    }
+    
+    var emailDomain = 
+        emailAddress.substr(atSymbolIndex + 1, emailAddress.length);
+    if ((['gmail.com', 'yahoo.com']).indexOf(emailDomain) === -1) {
+        console.log(emailDomain);
+        throw new Error("This is not a supported email service. " + 
+                        "Please enter custom settings");
+    }
+}
+
 
 
 /**
@@ -37,33 +88,49 @@ User.prototype.reset = function () {
     this.emailService = {
         imapServerAddress: null,
         imapServerPort: null,
-        imapAuthRequired: null,
-        imapRequireSSL: null,
+        imapAuthRequired: true,
+        imapRequireSSL: true,
         
         smtpServerAddress: null,
         smtpServerPort: null,
-        smtpAuthRequired: null,
-        smtpRequireSSL: null
+        smtpAuthRequired: true,
+        smtpRequireSSL: true
     };
 };
 
+
 User.prototype.initializeByCredentials = function (emailAddress, password) {
     
-    var atSymbolIndex = emailAddress.indexOf('@');
-    if (atSymbolIndex === -1) {
-        throw new Error("This is not a valid email address");
-    }
-    if (password === null || password === undefined) {
-        throw new Error("This is not a valid email password");
-    }
+    validateEmailCredentials(emailAddress, password);
     
     var emailDomain = 
-        atSymbolIndex.substr(atSymbolIndex + 1, emailAddress.length);
+        emailAddress.substr(emailAddress.indexOf('@')+ 1, emailAddress.length), 
+        emailServiceInfo = 
+        (determineProviderSettings.bind(this))(emailDomain);
     
-    this.emailService = (determineProviderSettings.bind(this))(emailDomain);
+    this.emailService = emailServiceInfo;
     this.emailAddress = emailAddress;
     this.password = password;
 };
+
+
+User.prototype.initializeByObject = function (someObject) {
+    
+    var emailAddress = someObject.emailAddress, 
+        password = someObject.password, 
+        emailService = someObject.emailService;
+    
+    validateEmailCredentials(emailAddress, password);
+    validateImapSmtpSettings(emailService);
+    
+    this.emailAddress = emailAddress;
+    this.password = password;
+    
+    if (someObject.emailService && typeof someObject === "object") {
+        this.emailService = someObject.emailService;
+    }
+};
+
 
 User.prototype.initializeByString = function (someString) {
     
@@ -92,6 +159,7 @@ User.prototype.initializeByString = function (someString) {
     }
 };
 
+
 User.prototype.toString = function () {
     return JSON.stringify({
         emailAddress: this.emailAddress,
@@ -99,5 +167,6 @@ User.prototype.toString = function () {
         emailService: this.emailService
     });
 };
+
 
 module.exports = exports = User;
