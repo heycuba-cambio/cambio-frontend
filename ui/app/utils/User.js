@@ -23,24 +23,25 @@ function validateImapSmtpSettings(imapSmtpSettingsObj) {
     validationDial = imapSmtpSettingsObj.hasOwnProperty("smtpServerAddress");
     validationDial = imapSmtpSettingsObj.hasOwnProperty("smtpServerPort");
     
-    if (imapSmtpSettingsObj.hasOwnProperty("imapAuthRequired") || 
+    if (!imapSmtpSettingsObj.hasOwnProperty("imapAuthRequired") || 
         typeof imapSmtpSettingsObj.imapAuthRequired !== "boolean") {
         validationDial = false;
     }
-    if (imapSmtpSettingsObj.hasOwnProperty("smtpAuthRequired") || 
+    if (!imapSmtpSettingsObj.hasOwnProperty("smtpAuthRequired") || 
         typeof imapSmtpSettingsObj.imapAuthRequired !== "boolean") {
         validationDial = false;
     }
-    if (imapSmtpSettingsObj.hasOwnProperty("imapRequireSSL") || 
+    if (!imapSmtpSettingsObj.hasOwnProperty("imapRequireSSL") || 
         typeof imapSmtpSettingsObj.imapAuthRequired !== "boolean") {
         validationDial = false;
     }
-    if (imapSmtpSettingsObj.hasOwnProperty("smtpRequireSSL") || 
+    if (!imapSmtpSettingsObj.hasOwnProperty("smtpRequireSSL") || 
         typeof imapSmtpSettingsObj.imapAuthRequired !== "boolean") {
         validationDial = false;
     }
     
     if (!validationDial) {
+        console.log(imapSmtpSettingsObj);
         throw new Error("Invalid IMAP/SMTP settings. Try again.");
     }
 }

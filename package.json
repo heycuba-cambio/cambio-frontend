@@ -23,12 +23,13 @@
   "dependencies": {
     "angular": "^1.5.0",
     "angular-sanitize": "^1.5.0",
-    "angular-ui-router": "^0.2.18",
     "imap": "^0.8.16",
+    "jquery": "^2.2.1",
     "kbpgp": "^2.0.52",
     "lodash": "^4.6.1",
     "marked": "^0.3.5",
     "smtp-connection": "^2.3.1",
-    "v-modal": "^1.3.5"
+    "v-modal": "^1.3.5",
+    "validator": "^5.1.0"
   }
 }

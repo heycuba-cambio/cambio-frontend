@@ -4,12 +4,12 @@
         <p>Welcome to <b>Cambio</b>, the awesome way for you to access the internet through email! Because Cambio works through email, we'll need your email credentials. Let's get started!</p>
         
         <form name="form" 
-              ng-hide="SettingsModalController.customFormShown">
+              ng-hide="SettingsModalController.customFormShown"
+              novalidate>
             <div class="group">
                 <label>Email Address</label>
-                <input type="email" 
+                <input type="text" 
                        class="form-control" 
-                       name="emailAddress" 
                        ng-model="SettingsModalController.user.emailAddress" 
                        required>
             </div>
@@ -17,7 +17,6 @@
                 <label>Password</label>
                 <input type="password" 
                        class="form-control" 
-                       name="password" 
                        ng-model="SettingsModalController.user.password" 
                        required>
             </div>
@@ -33,31 +32,88 @@
             </div>
         </form>
         
-        <form name="form" 
-              ng-show="SettingsModalController.customFormShown">
+        <form name="customForm" 
+              ng-show="SettingsModalController.customFormShown"
+              novalidate>
+            <div class="group">
+                <label>Email Address</label>
+                <input type="text" 
+                       class="form-control" 
+                       ng-model="SettingsModalController.user.emailAddress" 
+                       required>
+            </div>
+            <div class="group">
+                <label>Password</label>
+                <input type="password" 
+                       class="form-control" 
+                       ng-model="SettingsModalController.user.password" 
+                       required>
+            </div>
             <div class="group">
                 <label>IMAP Server Address</label>
+                <input type="text"
+                       class="form-control"
+                       ng-model="SettingsModalController.user.emailService.imapServerAddress"
+                       required>
             </div>
             <div class="group">
                 <label>IMAP Server Port</label>
+                <input type="text"
+                       class="form-control"
+                       ng-model="SettingsModalController.user.emailService.imapServerPort"
+                       required>
             </div>
             <div class="group">
-                <label>IMAP Auth Required</label>
+                <label>
+                    <input type="checkbox"
+                           ng-model="SettingsModalController.user.emailService.imapAuthRequired">
+                    IMAP Auth Required
+                </label>
             </div>
             <div class="group">
-                <label>IMAP Require SSL</label>
+                <label>
+                    <input type="checkbox"
+                           ng-model="SettingsModalController.user.emailService.imapRequireSSL">
+                    IMAP Require SSL
+                </label>
             </div>
             <div class="group">
                 <label>SMTP Server Address</label>
+                <input type="text"
+                       class="form-control"
+                       ng-model="SettingsModalController.user.emailService.smtpServerAddress"
+                       required>
             </div>
             <div class="group">
                 <label>SMTP Server Port</label>
+                <input type="text"
+                       class="form-control"
+                       ng-model="SettingsModalController.user.emailService.smtpServerPort"
+                       required>
             </div>
             <div class="group">
-                <label>SMTP Auth Required</label>
+                <label>
+                    <input type="checkbox"
+                           ng-model="SettingsModalController.user.emailService.smtpAuthRequired">
+                    SMTP Auth Required
+                </label>
             </div>
             <div class="group">
-                <label>SMTP Require SSL</label>
+                <label>
+                    <input type="checkbox"
+                           ng-model="SettingsModalController.user.emailService.smtpRequireSSL">
+                    SMTP Require SSL
+                </label>
+            </div>
+            <div class="form-actions">
+                <button type="submit"
+                        class="btn btn-form btn-positive btn-lg pull-right"
+                        ng-disabled="customForm.$invalid"
+                        ng-click="SettingsModalController.save()"><b>OK</b></button>
+                <button type="submit"
+                        class="btn btn-form btn-primary btn-lg pull-right"
+                        ng-click="SettingsModalController.hideCustomForm()">
+                    <span class="icon icon-cog"></span> Basic</button>
             </div>
         </form>
         

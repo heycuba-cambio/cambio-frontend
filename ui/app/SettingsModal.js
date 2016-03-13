@@ -17,6 +17,11 @@ function SettingsModalController(SettingsModalService) {
     _this.formInvalid = false;
     _this.formInvalidMessage = "";
     _this.customFormShown = false;
+    _this.user = {
+        emailAddress: "",
+        password: "",
+        emailService: ""
+    };
     
     _this.save = function () {
         _this.formInvalid = false;
@@ -28,11 +33,7 @@ function SettingsModalController(SettingsModalService) {
                     _this.user.password
                 );
             } else {
-                user.initializeByObject({
-                    emailAddress: SettingsModalService.user.emailAddress,
-                    password: SettingsModalService.user.password,
-                    emailService: SettingsModalService.emailService
-                });
+                user.initializeByObject(_this.user);
             }
         } catch (e) {
             _this.formInvalid = true;
@@ -54,5 +55,5 @@ function SettingsModalController(SettingsModalService) {
     
 }
 
-exports.SettingsModalService = SettingsModalService;
-exports.SettingsModalController = SettingsModalController;
+exports.Service = SettingsModalService;
+exports.Controller = SettingsModalController;

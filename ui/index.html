@@ -8,15 +8,15 @@
         <link type="text/css"
               rel="stylesheet"
               href="../node_modules/v-modal/dist/v-modal.css">
+        <script type="text/javascript"
+                src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" 
                 src="../node_modules/angular/angular.min.js">
         </script>
         <script type="text/javascript"
-                src="../node_modules/angular-ui-router/release/angular-ui-router.min.js">
-        </script>
+                src="../node_modules/angular-sanitize/angular-sanitize.min.js"></script>
         <script type="text/javascript"
                 src="../node_modules/v-modal/dist/v-modal.js">
-        
         </script>
         <script type="text/javascript" 
                 src="main.js">
@@ -29,18 +29,23 @@
                     
                     <div class="sidebar" id="sideBar">
                         <ul class="list-group">
-                            <li class="list-group-header" id="searchBox">
+                            <li class="list-group-header" 
+                                id="searchBox"
+                                ng-controller="SearchBarController as SearchBarController">
                                 <input type="text" 
                                        class="form-control
                                               pull-left" 
+                                       ng-model="SearchBarController.searchTerm"
                                        placeholder="Search Term or Domain name">
                                 <button class="btn 
                                                btn-primary
                                                btn-large
-                                               pull-right">
+                                               pull-right"
+                                        ng-click="SearchBarController.goSearch()">
                                     <span class="icon icon-search">
                                     </span>
-                                    Search/Go</button>
+                                    Search/Go
+                                </button>
                             </li>
                             <li class="list-group-item">
                                 <div class="media-body">
@@ -57,8 +62,10 @@
                         </ul>
                     </div>
                     
-                    <div class="pane">
-                        
+                    <div class="pane" 
+                         id="displayContent" 
+                         ng-controller="DisplayContentController as DisplayContentController">
+                        <div id="contentBox" class="padded-more"></div>
                     </div>
                     
                 </div>
